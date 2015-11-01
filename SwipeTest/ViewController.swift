@@ -131,9 +131,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
 //    override func viewDidAppear(animated: Bool) {
 //        self.presentViewController(myImagePicker, animated: true, completion: nil)
-//        
-//    }
-//    
+//        s//    
     /**
     画像が選択された時に呼ばれる.
     */
