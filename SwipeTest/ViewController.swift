@@ -108,7 +108,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         self.title = "Select a Image"
         
-        myImageView = UIImageView(frame: self.view.bounds)
+//        myImageView = UIImageView(frame: self.view.bounds)
         
         // インスタンス生成
         myImagePicker = UIImagePickerController()
