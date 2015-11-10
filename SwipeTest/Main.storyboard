@@ -16,59 +16,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="オリジナルアプリ-背景.png" translatesAutoresizingMaskIntoConstraints="NO" id="qnI-dD-OJG">
-                                <rect key="frame" x="0.0" y="64" width="375" height="616"/>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K20-8V-Kxl">
                                 <rect key="frame" x="16" y="373" width="343" height="227"/>
                             </imageView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mdk-0a-zZS">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <items>
-                                    <navigationItem title="Title" id="4FL-xx-7aS">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" id="edD-n6-ybx">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="RrJ-vx-ux5">
-                                                <rect key="frame" x="-23" y="-15" width="83" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Button">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <segue destination="vXZ-lx-hvc" kind="show" id="Y1G-u6-kFN"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="6kq-2F-HsG">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="pbM-CT-FPX">
-                                                <rect key="frame" x="-23" y="-15" width="83" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Button">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="tapedPhotoBtn:" destination="NmE-7C-Nud" eventType="touchUpInside" id="Nlb-Ej-Lp4"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vSr-YO-5Cu">
                                 <rect key="frame" x="16" y="115" width="343" height="219"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="オリジナルアプリ-背景.png" translatesAutoresizingMaskIntoConstraints="NO" id="qnI-dD-OJG">
+                                <rect key="frame" x="0.0" y="64" width="375" height="616"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="OYz-Pm-SMg">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="rmJ-GX-Kvx"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="gZX-3T-cWa"/>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="imageView" destination="vSr-YO-5Cu" id="n1M-RW-2mZ"/>
                         <outlet property="imageView2" destination="K20-8V-Kxl" id="DxT-Cj-y5K"/>
-                        <outlet property="photoSetBtn" destination="pbM-CT-FPX" id="VfU-9H-ExK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vvV-Ev-c4p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-187.5" y="887.5"/>
+            <point key="canvasLocation" x="399.5" y="887.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="2Ff-ld-WRC">
@@ -85,52 +57,24 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="オリジナルアプリ-背景.png" translatesAutoresizingMaskIntoConstraints="NO" id="SNc-yb-fOf">
                                 <rect key="frame" x="0.0" y="64" width="375" height="608"/>
                             </imageView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C6X-MT-I0W">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <items>
-                                    <navigationItem title="Title" id="ba0-9d-9AR">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" id="nLK-Vi-Tda">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qmS-Tb-6uu">
-                                                <rect key="frame" x="-23" y="-15" width="83" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Button">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <segue destination="vXZ-lx-hvc" kind="show" id="iZr-6r-95z"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="Ef3-dn-Cpl">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aB6-OP-H7j">
-                                                <rect key="frame" x="-23" y="-15" width="83" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Button">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="tapedPhotoBtn:" destination="amf-JJ-7RS" eventType="touchUpInside" id="R1m-Ss-mNe"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nlr-n6-flV">
                                 <rect key="frame" x="16" y="161" width="343" height="326"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="8aD-5i-HxS">
+                        <barButtonItem key="leftBarButtonItem" title="　戻る" id="46n-eU-Dxi"/>
+                        <barButtonItem key="rightBarButtonItem" title="カメラ" id="1uE-jR-ocV"/>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="myImageView" destination="Nlr-n6-flV" id="OTw-4w-G1x"/>
-                        <outlet property="photoSetBtn" destination="aB6-OP-H7j" id="zx9-UT-uSz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WeT-D2-kqX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="336.5" y="115.5"/>
+            <point key="canvasLocation" x="923.5" y="115.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
@@ -154,7 +98,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="NmE-7C-Nud" kind="show" id="hlJ-tP-YG1"/>
+                                    <segue destination="X2T-Ir-lDd" kind="show" id="hlJ-tP-YG1"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Amr-o2-OsR">
@@ -164,7 +108,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="amf-JJ-7RS" kind="show" id="eab-aB-vJO"/>
+                                    <segue destination="Pvo-gI-5fB" kind="show" id="eab-aB-vJO"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -176,12 +120,45 @@
             </objects>
             <point key="canvasLocation" x="-187.5" y="115.5"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="z7p-4D-RDk">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Pvo-gI-5fB" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LKH-lx-9ZW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="amf-JJ-7RS" kind="relationship" relationship="rootViewController" id="dYO-4W-8bS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mm2-m3-Orj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="336.5" y="115.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="FrG-Sj-Fr6">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="X2T-Ir-lDd" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IDi-I1-p1n">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="NmE-7C-Nud" kind="relationship" relationship="rootViewController" id="9rj-gG-20T"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zc9-1G-oUm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-187.5" y="887.5"/>
+        </scene>
     </scenes>
     <resources>
         <image name="オリジナルアプリ-ホーム.png" width="320" height="568"/>
         <image name="オリジナルアプリ-背景.png" width="320" height="568"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="iZr-6r-95z"/>
-    </inferredMetricsTieBreakers>
 </document>
