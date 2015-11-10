@@ -19,27 +19,29 @@ class CompareViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     @IBOutlet weak var photoSetBtn: UIButton!
     
-    @IBAction func tapedPhotoBtn(sender: UIButton) {
-        
-        // フォトライブラリが使用可能か？
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
-            
-            // フォトライブラリの選択画面を表示
-            let picker = UIImagePickerController()
-            picker.delegate = self
-            picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-            self.presentViewController(picker, animated: true, completion: nil)
-        }
-        
-    }
-
     
-        
-        @IBOutlet var imageView: UIImageView!
-        @IBOutlet var imageView2: UIImageView!
+    @IBOutlet var imageView: UIImageView!
+    @IBOutlet var imageView2: UIImageView!
     
     
 
+    
+//    @IBAction func tapedPhotoBtn(sender: UIButton) {
+//        
+//        // フォトライブラリが使用可能か？
+//        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
+//            
+//            // フォトライブラリの選択画面を表示
+//            let picker = UIImagePickerController()
+//            picker.delegate = self
+//            picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+//            self.presentViewController(picker, animated: true, completion: nil)
+//        }
+//        
+//    }
+//
+//    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

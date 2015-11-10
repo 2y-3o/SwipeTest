@@ -21,6 +21,33 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet var myImageView: UIImageView!
     
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.title = "Select a Image"
+        
+        //        myImageView = UIImageView(frame: self.view.bounds)
+        
+        // インスタンス生成
+        myImagePicker = UIImagePickerController()
+        
+        // デリゲート設定
+        myImagePicker.delegate = self
+        
+        // 画像の取得先はフォトライブラリ
+        myImagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        
+        // 画像取得後の編集を不可に
+        myImagePicker.allowsEditing = false
+        
+        self.addSwipeRecognizer()
+        
+        self.getAllPhotosInfo()
+        
+        myImageView.userInteractionEnabled = true
+    }
+
+    
     
     @IBOutlet weak var photoSetBtn: UIButton!
     
@@ -46,7 +73,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         NSLog("左にスワイプしました")
         
         imageIndex = imageIndex + 1
-        self.getAllPhotosInfo()
+        self.myImageView!.image = getAssetThumbnail(photoAssets[imageIndex])
+        //self.getAllPhotosInfo()
         
         
     }
@@ -75,80 +103,65 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         var assets: PHFetchResult = PHAsset.fetchAssetsWithMediaType(.Image, options: nil)
         assets.enumerateObjectsUsingBlock { (asset,index, stop) -> Void in
             self.photoAssets.append(asset as! PHAsset)
-            
         }
+        
         println(photoAssets)
         let manager: PHImageManager = PHImageManager()
         manager.requestImageForAsset(photoAssets[imageIndex],targetSize: CGSizeMake(10, 10), contentMode: .AspectFit , options: nil) { (image, info) -> Void in
-            
             //取得したimageをUIImageViewなどで表示する
-            self.myImageView!.image = image
-            
+            self.myImageView!.image = self.getAssetThumbnail(self.photoAssets[self.imageIndex])
         }
-        
-        
-        
     }
     
+    
+    //アルバム表示
     @IBAction func tapedPhotoBtn(sender: UIButton) {
-        
-        // フォトライブラリが使用可能か？
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
-            
-            // フォトライブラリの選択画面を表示
-            let picker = UIImagePickerController()
-            picker.delegate = self
-            picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-            self.presentViewController(picker, animated: true, completion: nil)
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary){
+            // フォトライブラリの画像・写真選択画面を表示
+            let imagePickerController = UIImagePickerController()
+            imagePickerController.sourceType = .PhotoLibrary
+            imagePickerController.allowsEditing = true
+            imagePickerController.delegate = self
+            presentViewController(imagePickerController, animated: true, completion: nil)
         }
-        
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.title = "Select a Image"
-        
-//        myImageView = UIImageView(frame: self.view.bounds)
-        
-        // インスタンス生成
-        myImagePicker = UIImagePickerController()
-        
-        // デリゲート設定
-        myImagePicker.delegate = self
-        
-        // 画像の取得先はフォトライブラリ
-        myImagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        
-        // 画像取得後の編集を不可に
-        myImagePicker.allowsEditing = false
-        
-        self.addSwipeRecognizer()
-        
-        self.getAllPhotosInfo()
-        
-        myImageView.userInteractionEnabled = true
     }
     
-//    override func viewDidAppear(animated: Bool) {
-//        self.presentViewController(myImagePicker, animated: true, completion: nil)
-//        s//    
-    /**
-    画像が選択された時に呼ばれる.
-    */
+    //アルバムの画像が選択された時によばれる
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        //もし選択された画像が空じゃなかったら
+        if info[UIImagePickerControllerOriginalImage] != nil {
+            let image:UIImage = info[UIImagePickerControllerOriginalImage]  as! UIImage
+            myImageView.image = image
+            
+            
+        }
+        //allowsEditingがtrueの場合 UIImagePickerControllerEditedImage
+        //閉じる処理
+        picker.dismissViewControllerAnimated(true, completion: nil);
+    }
+    
+
+    
+    
+    /*
+    //画像が選択された時に呼ばれる.
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         
         //選択された画像を取得.
         var myImage: AnyObject?  = info[UIImagePickerControllerOriginalImage]
+        println(myImage)
         
-        //選択された画像を表示するViewControllerを生成.
-        let secondViewController = SecondViewController()
-        
-        //選択された画像を表示するViewContorllerにセットする.
-        secondViewController.mySelectedImage = myImage as! UIImage
-        
-        myImagePicker.pushViewController(secondViewController, animated: true)
-        
+//        //選択された画像を表示するViewControllerを生成.
+//        let secondViewController = SecondViewController()
+//        
+//        //選択された画像を表示するViewContorllerにセットする.
+//        secondViewController.mySelectedImage = myImage as! UIImage
+//        
+//        myImagePicker.pushViewController(secondViewController, animated: true)
+//        
     }    /**
+
+*/
     画像選択がキャンセルされた時に呼ばれる.
     */
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
@@ -368,6 +381,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 //            }
 //        }
    }
+
+    func getAssetThumbnail(asset: PHAsset) -> UIImage {
+        let manager = PHImageManager.defaultManager()
+        var option = PHImageRequestOptions()
+        var thumbnail = UIImage()
+        option.synchronous = true
+        manager.requestImageForAsset(asset, targetSize: CGSize(width: 100.0, height: 100.0), contentMode: .AspectFit, options: option, resultHandler: {(result, info)->Void in
+            thumbnail = result
+        })
+        return thumbnail
+    }
     
     
 }
