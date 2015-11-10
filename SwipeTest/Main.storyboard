@@ -70,6 +70,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="myImageView" destination="Nlr-n6-flV" id="OTw-4w-G1x"/>
+                        <outlet property="photoSetBtn" destination="1uE-jR-ocV" id="pRk-Qi-hoE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WeT-D2-kqX" userLabel="First Responder" sceneMemberID="firstResponder"/>

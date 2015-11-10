@@ -12,7 +12,7 @@ import ImageIO
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    
+    //TODO: PHAssetを使うとdeleteをした時にアラートが出てしまうので別のクラスを使う
     var photoAssets = [PHAsset]()
     
     var imageIndex: Int = 0
@@ -20,6 +20,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var myImagePicker: UIImagePickerController!
     @IBOutlet var myImageView: UIImageView!
     
+     @IBOutlet weak var photoSetBtn: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,9 +48,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         myImageView.userInteractionEnabled = true
     }
 
-    
-    
-    @IBOutlet weak var photoSetBtn: UIButton!
+
     
     func addSwipeRecognizer() {
         var swipeLeft = UISwipeGestureRecognizer(target: self, action: "swipeleft")
@@ -96,10 +95,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         photoAssets = []
         
         var options = PHFetchOptions()
-        options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        
+        //写真の順番
+        options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
         
         
-        //画像を全て取得
+        //画像を全て取得(false古い順、true新しい順)
+        // TODO: falseとtrueを変えても、写真の降順が変わらないのでなおす
         var assets: PHFetchResult = PHAsset.fetchAssetsWithMediaType(.Image, options: nil)
         assets.enumerateObjectsUsingBlock { (asset,index, stop) -> Void in
             self.photoAssets.append(asset as! PHAsset)

@@ -24,6 +24,64 @@ class CompareViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet var imageView2: UIImageView!
     
     
+    var myImagePicker: UIImagePickerController!
+    var myImagePicker2: UIImagePickerController!
+    
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        
+//        self.title = "Select a Image"
+//        
+//        //        myImageView = UIImageView(frame: self.view.bounds)
+//        
+//        // インスタンス生成
+//        myImagePicker = UIImagePickerController()
+//        
+//        // デリゲート設定
+//        myImagePicker.delegate = self
+//        
+//        // 画像の取得先はフォトライブラリ
+//        myImagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+//        
+//        // 画像取得後の編集を不可に
+//        myImagePicker.allowsEditing = false
+//        
+//        self.addSwipeRecognizer()
+//        
+//        self.getAllPhotosInfo()
+//        
+//        imageView.userInteractionEnabled = true
+//    }
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        
+//        self.title = "Select a Image"
+//        
+//        //        myImageView = UIImageView(frame: self.view.bounds)
+//        
+//        // インスタンス生成
+//        myImagePicker2 = UIImagePickerController()
+//        
+//        // デリゲート設定
+//        myImagePicker2.delegate = self
+//        
+//        // 画像の取得先はフォトライブラリ
+//        myImagePicker2.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+//        
+//        // 画像取得後の編集を不可に
+//        myImagePicker2.allowsEditing = false
+//        
+//        self.addSwipeRecognizer()
+//        
+//        self.getAllPhotosInfo2()
+//        
+//        imageView2.userInteractionEnabled = true
+//    }
+//    
+
+    
+
+
 
     
 //    @IBAction func tapedPhotoBtn(sender: UIButton) {
@@ -52,6 +110,7 @@ class CompareViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         imageView.userInteractionEnabled = true
         imageView2.userInteractionEnabled = true
+        
         
 
 
@@ -164,6 +223,42 @@ class CompareViewController: UIViewController, UIImagePickerControllerDelegate, 
                     self.getAllPhotosInfo()
             })
         }
+//        
+//        //アルバム表示
+//        @IBAction func tapedPhotoBtn(sender: UIButton) {
+//            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary){
+//                // フォトライブラリの画像・写真選択画面を表示
+//                let imagePickerController = UIImagePickerController()
+//                imagePickerController.sourceType = .PhotoLibrary
+//                imagePickerController.allowsEditing = true
+//                imagePickerController.delegate = self
+//                presentViewController(imagePickerController, animated: true, completion: nil)
+//            }
+//        }
+//        
+//        //アルバムの画像が選択された時によばれる
+//        func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+//            //もし選択された画像が空じゃなかったら
+//            if info[UIImagePickerControllerOriginalImage] != nil {
+//                let image:UIImage = info[UIImagePickerControllerOriginalImage]  as! UIImage
+//                imageView.image = image
+//                
+//                
+//            }
+//            //allowsEditingがtrueの場合 UIImagePickerControllerEditedImage
+//            //閉じる処理
+//            picker.dismissViewControllerAnimated(true, completion: nil);
+//        }
+//        
+//        //画像選択がキャンセルされた時に呼ばれる.
+//        
+//        func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+//            
+//            // モーダルビューを閉じる
+//            self.dismissViewControllerAnimated(true, completion: nil)
+//        }
+//        
+        
         
         
     
