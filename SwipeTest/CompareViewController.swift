@@ -165,6 +165,7 @@ class CompareViewController: UIViewController, UIImagePickerControllerDelegate, 
             })
         }
         
+        
     
 
     /*
