@@ -124,16 +124,16 @@ class CompareViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     
     func addSwipeRecognizer() {
-        var swipeLeft = UISwipeGestureRecognizer(target: self, action: "swipeleft")
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: "swipeleft")
         swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
         
-        var swipeRight = UISwipeGestureRecognizer(target: self, action: "swiperight")
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: "swiperight")
         swipeRight.direction = UISwipeGestureRecognizerDirection.Right
         
-        var swipeLeft2 = UISwipeGestureRecognizer(target: self, action: "swipeleft2")
+        let swipeLeft2 = UISwipeGestureRecognizer(target: self, action: "swipeleft2")
         swipeLeft2.direction = UISwipeGestureRecognizerDirection.Left
         
-        var swipeRight2 = UISwipeGestureRecognizer(target: self, action: "swiperight2")
+        let swipeRight2 = UISwipeGestureRecognizer(target: self, action: "swiperight2")
         swipeRight2.direction = UISwipeGestureRecognizerDirection.Right
         
         
@@ -168,17 +168,17 @@ class CompareViewController: UIViewController, UIImagePickerControllerDelegate, 
         photoAssets = []
         
         //ソート条件を指定
-        var options = PHFetchOptions()
+        let options = PHFetchOptions()
         options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         
         
         //画像を全て取得
-        var assets: PHFetchResult = PHAsset.fetchAssetsWithMediaType(.Image, options: nil)
+        let assets: PHFetchResult = PHAsset.fetchAssetsWithMediaType(.Image, options: nil)
         assets.enumerateObjectsUsingBlock { (asset,index, stop) -> Void in
             self.photoAssets.append(asset as! PHAsset)
             
         }
-        println(photoAssets)
+        print(photoAssets)
         let manager: PHImageManager = PHImageManager()
         manager.requestImageForAsset(photoAssets[imageIndex],targetSize: CGSizeMake(100, 100), contentMode: .AspectFill , options: nil) { (image, info) -> Void in
             //取得したimageをUIImageViewなどで表示する
@@ -191,17 +191,17 @@ class CompareViewController: UIViewController, UIImagePickerControllerDelegate, 
         photoAssets = []
         
         //ソート条件を指定
-        var options = PHFetchOptions()
+        let options = PHFetchOptions()
         options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         
         
         //画像を全て取得
-        var assets: PHFetchResult = PHAsset.fetchAssetsWithMediaType(.Image, options: nil)
+        let assets: PHFetchResult = PHAsset.fetchAssetsWithMediaType(.Image, options: nil)
         assets.enumerateObjectsUsingBlock { (asset,index, stop) -> Void in
             self.photoAssets.append(asset as! PHAsset)
             
         }
-        println(photoAssets)
+        print(photoAssets)
         let manager: PHImageManager = PHImageManager()
         manager.requestImageForAsset(photoAssets[imageIndex],targetSize: CGSizeMake(100, 100), contentMode: .AspectFill , options: nil) { (image, info) -> Void in
             //取得したimageをUIImageViewなどで表示する

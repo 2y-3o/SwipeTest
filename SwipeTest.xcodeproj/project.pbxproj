@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5318C34C00A4AEB003333B55 /* Pods_SwipeTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF8EC29AB6E195796A33E52 /* Pods_SwipeTest.framework */; };
 		6574FDA31BC9F3530057FDAB /* オリジナルアプリ-背景.png in Resources */ = {isa = PBXBuildFile; fileRef = 6574FDA21BC9F3530057FDAB /* オリジナルアプリ-背景.png */; };
 		6574FDA51BCA21550057FDAB /* オリジナルアプリ-背景2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6574FDA41BCA21550057FDAB /* オリジナルアプリ-背景2.png */; };
 		6574FDA91BCA2DB10057FDAB /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6574FDA81BCA2DB10057FDAB /* SecondViewController.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		16FDCDEAB0AFA17738BD3117 /* Pods-SwipeTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwipeTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwipeTest/Pods-SwipeTest.debug.xcconfig"; sourceTree = "<group>"; };
 		6574FDA21BC9F3530057FDAB /* オリジナルアプリ-背景.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "オリジナルアプリ-背景.png"; sourceTree = "<group>"; };
 		6574FDA41BCA21550057FDAB /* オリジナルアプリ-背景2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "オリジナルアプリ-背景2.png"; sourceTree = "<group>"; };
 		6574FDA81BCA2DB10057FDAB /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +58,8 @@
 		65D634DB1B7251F8001D6676 /* swipe背景2(2).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "swipe背景2(2).png"; sourceTree = "<group>"; };
 		65DD0AE91BBD6DED00852464 /* オリジナルアプリ-ホーム.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "オリジナルアプリ-ホーム.png"; sourceTree = "<group>"; };
 		65EF955A1BB7BFA00001308E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		9CF8EC29AB6E195796A33E52 /* Pods_SwipeTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwipeTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE06061B3878EC927430AE81 /* Pods-SwipeTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwipeTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwipeTest/Pods-SwipeTest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5318C34C00A4AEB003333B55 /* Pods_SwipeTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,12 +81,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		487C4FF81D7F21B947F20D24 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9CF8EC29AB6E195796A33E52 /* Pods_SwipeTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5EE0514FCFF1E32839DA12BE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				16FDCDEAB0AFA17738BD3117 /* Pods-SwipeTest.debug.xcconfig */,
+				FE06061B3878EC927430AE81 /* Pods-SwipeTest.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		65A602731C016269006B380D /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				65D634D41B71E6F9001D6676 /* swipe 背景.png */,
+				65D634DA1B7251F8001D6676 /* swipe1(3).png */,
+				65D634D81B71EC69001D6676 /* swipe背景2(1).png */,
+				65D634DB1B7251F8001D6676 /* swipe背景2(2).png */,
+				65D634D61B71EAED001D6676 /* swipe背景2.png */,
+				65DD0AE91BBD6DED00852464 /* オリジナルアプリ-ホーム.png */,
+				6574FDA21BC9F3530057FDAB /* オリジナルアプリ-背景.png */,
+				6574FDA41BCA21550057FDAB /* オリジナルアプリ-背景2.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		65CAB8861B6DFEC90073C9BE = {
 			isa = PBXGroup;
 			children = (
+				65CAB8901B6DFEC90073C9BE /* Products */,
 				65CAB8911B6DFEC90073C9BE /* SwipeTest */,
 				65CAB8A71B6DFEC90073C9BE /* SwipeTestTests */,
-				65CAB8901B6DFEC90073C9BE /* Products */,
+				5EE0514FCFF1E32839DA12BE /* Pods */,
+				487C4FF81D7F21B947F20D24 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,22 +136,15 @@
 		65CAB8911B6DFEC90073C9BE /* SwipeTest */ = {
 			isa = PBXGroup;
 			children = (
-				6574FDA41BCA21550057FDAB /* オリジナルアプリ-背景2.png */,
-				6574FDA21BC9F3530057FDAB /* オリジナルアプリ-背景.png */,
-				65DD0AE91BBD6DED00852464 /* オリジナルアプリ-ホーム.png */,
-				65D634DA1B7251F8001D6676 /* swipe1(3).png */,
-				65D634DB1B7251F8001D6676 /* swipe背景2(2).png */,
-				65D634D81B71EC69001D6676 /* swipe背景2(1).png */,
-				65D634D61B71EAED001D6676 /* swipe背景2.png */,
-				65D634D41B71E6F9001D6676 /* swipe 背景.png */,
+				65A602731C016269006B380D /* Images */,
+				65CAB8921B6DFEC90073C9BE /* Supporting Files */,
 				65CAB8941B6DFEC90073C9BE /* AppDelegate.swift */,
-				65EF955A1BB7BFA00001308E /* Main.storyboard */,
-				65CAB8961B6DFEC90073C9BE /* ViewController.swift */,
 				65CAB8B41B7094E90073C9BE /* CompareViewController.swift */,
 				65CAB89B1B6DFEC90073C9BE /* Images.xcassets */,
 				65CAB89D1B6DFEC90073C9BE /* LaunchScreen.xib */,
-				65CAB8921B6DFEC90073C9BE /* Supporting Files */,
+				65EF955A1BB7BFA00001308E /* Main.storyboard */,
 				6574FDA81BCA2DB10057FDAB /* SecondViewController.swift */,
+				65CAB8961B6DFEC90073C9BE /* ViewController.swift */,
 			);
 			path = SwipeTest;
 			sourceTree = "<group>";
@@ -122,14 +154,14 @@
 			children = (
 				65CAB8931B6DFEC90073C9BE /* Info.plist */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		65CAB8A71B6DFEC90073C9BE /* SwipeTestTests */ = {
 			isa = PBXGroup;
 			children = (
-				65CAB8AA1B6DFEC90073C9BE /* SwipeTestTests.swift */,
 				65CAB8A81B6DFEC90073C9BE /* Supporting Files */,
+				65CAB8AA1B6DFEC90073C9BE /* SwipeTestTests.swift */,
 			);
 			path = SwipeTestTests;
 			sourceTree = "<group>";
@@ -139,7 +171,7 @@
 			children = (
 				65CAB8A91B6DFEC90073C9BE /* Info.plist */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,9 +181,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 65CAB8AE1B6DFEC90073C9BE /* Build configuration list for PBXNativeTarget "SwipeTest" */;
 			buildPhases = (
+				C668A5B591E0240D07506970 /* Check Pods Manifest.lock */,
 				65CAB88B1B6DFEC90073C9BE /* Sources */,
 				65CAB88C1B6DFEC90073C9BE /* Frameworks */,
 				65CAB88D1B6DFEC90073C9BE /* Resources */,
+				D54BD1A740A72BB92F9C16C2 /* Embed Pods Frameworks */,
+				F99117165C9514986DADBCB9 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -186,6 +221,8 @@
 		65CAB8871B6DFEC90073C9BE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0710;
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Ayano Ohya";
 				TargetAttributes = {
@@ -245,6 +282,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		C668A5B591E0240D07506970 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D54BD1A740A72BB92F9C16C2 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwipeTest/Pods-SwipeTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F99117165C9514986DADBCB9 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwipeTest/Pods-SwipeTest-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		65CAB88B1B6DFEC90073C9BE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -282,6 +367,7 @@
 				65CAB89E1B6DFEC90073C9BE /* Base */,
 			);
 			name = LaunchScreen.xib;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -370,9 +456,10 @@
 		};
 		65CAB8AF1B6DFEC90073C9BE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 16FDCDEAB0AFA17738BD3117 /* Pods-SwipeTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = SwipeTest/Info.plist;
+				INFOPLIST_FILE = "SwipeTest/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -380,9 +467,10 @@
 		};
 		65CAB8B01B6DFEC90073C9BE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FE06061B3878EC927430AE81 /* Pods-SwipeTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = SwipeTest/Info.plist;
+				INFOPLIST_FILE = "SwipeTest/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -400,7 +488,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = SwipeTestTests/Info.plist;
+				INFOPLIST_FILE = "SwipeTestTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwipeTest.app/SwipeTest";
@@ -415,7 +503,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = SwipeTestTests/Info.plist;
+				INFOPLIST_FILE = "SwipeTestTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwipeTest.app/SwipeTest";

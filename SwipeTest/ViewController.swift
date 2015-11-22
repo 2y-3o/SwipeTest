@@ -54,16 +54,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     
     func addSwipeRecognizer() {
-        var swipeLeft = UISwipeGestureRecognizer(target: self, action: "swipeleft")
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: "swipeleft")
         swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
         
-        var swipeRight = UISwipeGestureRecognizer(target: self, action: "swiperight")
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: "swiperight")
         swipeRight.direction = UISwipeGestureRecognizerDirection.Right
         
-        var swipeUp = UISwipeGestureRecognizer(target: self, action: "swipeup")
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: "swipeup")
         swipeUp.direction = UISwipeGestureRecognizerDirection.Up
         
-        var swipeDown = UISwipeGestureRecognizer(target: self, action: "swipedown")
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: "swipedown")
         swipeDown.direction = UISwipeGestureRecognizerDirection.Down
         
         self.myImageView.addGestureRecognizer(swipeLeft)
@@ -98,7 +98,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     private func getAllPhotosInfo(){
         photoAssets = []
         
-        var options = PHFetchOptions()
+        let options = PHFetchOptions()
         
         //写真の順番
         options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
@@ -106,12 +106,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         //画像を全て取得(false古い順、true新しい順)
         // TODO: falseとtrueを変えても、写真の降順が変わらないのでなおす
-        var assets: PHFetchResult = PHAsset.fetchAssetsWithMediaType(.Image, options: nil)
+        let assets: PHFetchResult = PHAsset.fetchAssetsWithMediaType(.Image, options: nil)
         assets.enumerateObjectsUsingBlock { (asset,index, stop) -> Void in
             self.photoAssets.append(asset as! PHAsset)
         }
         
-        println(photoAssets)
+        print(photoAssets)
         let manager: PHImageManager = PHImageManager()
         manager.requestImageForAsset(photoAssets[imageIndex],targetSize: CGSizeMake(10, 10), contentMode: .AspectFit , options: nil) { (image, info) -> Void in
             //取得したimageをUIImageViewなどで表示する
@@ -133,7 +133,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     //アルバムの画像が選択された時によばれる
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         //もし選択された画像が空じゃなかったら
         if info[UIImagePickerControllerOriginalImage] != nil {
             let image:UIImage = info[UIImagePickerControllerOriginalImage]  as! UIImage
