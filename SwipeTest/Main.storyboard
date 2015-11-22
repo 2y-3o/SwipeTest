@@ -57,21 +57,11 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="オリジナルアプリ-背景.png" translatesAutoresizingMaskIntoConstraints="NO" id="SNc-yb-fOf">
                                 <rect key="frame" x="-1" y="64" width="321" height="521"/>
                             </imageView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ng0-Cs-f8c">
-                                <rect key="frame" x="19" y="91" width="280" height="280"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nlr-n6-flV">
-                                <rect key="frame" x="19" y="91" width="280" height="280"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WfP-FL-1en">
                                 <rect key="frame" x="164" y="570" width="46" height="30"/>
                                 <state key="normal" title="Button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="deleteImages" destination="amf-JJ-7RS" eventType="touchUpInside" id="S6O-AD-l7b"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CCz-6A-y7H">
                                 <rect key="frame" x="12" y="420" width="50" height="50"/>
@@ -80,6 +70,9 @@
                                 <state key="normal" title="△">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="tapRevert" destination="amf-JJ-7RS" eventType="touchUpInside" id="YTK-fY-Gbv"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UiG-jS-tVb">
                                 <rect key="frame" x="70" y="468" width="80" height="80"/>
@@ -88,6 +81,9 @@
                                 <state key="normal" title="×">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="tapNO" destination="amf-JJ-7RS" eventType="touchUpInside" id="XmN-MH-LNr"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MwV-9K-YHU">
                                 <rect key="frame" x="168" y="468" width="80" height="80"/>
@@ -96,6 +92,9 @@
                                 <state key="normal" title="⚪︎">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="tapYES" destination="amf-JJ-7RS" eventType="touchUpInside" id="G6j-ts-hoK"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GUV-kt-PrI">
                                 <rect key="frame" x="256" y="420" width="50" height="50"/>
@@ -104,12 +103,26 @@
                                 <state key="normal" title="◎">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="deleteStackedImages" destination="amf-JJ-7RS" eventType="touchUpInside" id="G48-4H-OMj"/>
+                                </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ng0-Cs-f8c" customClass="KolodaView" customModule="Koloda">
+                                <rect key="frame" x="20" y="113" width="280" height="280"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nlr-n6-flV">
+                                <rect key="frame" x="20" y="113" width="280" height="280"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="8aD-5i-HxS">
-                        <barButtonItem key="leftBarButtonItem" title="　戻る" id="46n-eU-Dxi"/>
+                        <barButtonItem key="leftBarButtonItem" title="　戻る" id="46n-eU-Dxi">
+                            <connections>
+                                <action selector="backToTop" destination="amf-JJ-7RS" id="6yT-sw-rZk"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="カメラ" id="1uE-jR-ocV">
                             <connections>
                                 <action selector="tapedPhotoBtn" destination="amf-JJ-7RS" id="scX-Fd-5yo"/>
@@ -117,8 +130,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="NO_button" destination="UiG-jS-tVb" id="o64-hW-RWp"/>
+                        <outlet property="YES_button" destination="MwV-9K-YHU" id="Xxq-gG-iqC"/>
+                        <outlet property="deleteButton" destination="GUV-kt-PrI" id="kX9-pt-ZN7"/>
+                        <outlet property="kolodaView" destination="ng0-Cs-f8c" id="nYl-yz-gjH"/>
                         <outlet property="myImageView" destination="Nlr-n6-flV" id="OTw-4w-G1x"/>
                         <outlet property="photoSetBtn" destination="1uE-jR-ocV" id="pRk-Qi-hoE"/>
+                        <outlet property="revertButton" destination="CCz-6A-y7H" id="iY2-w0-xAU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WeT-D2-kqX" userLabel="First Responder" sceneMemberID="firstResponder"/>
