@@ -13,12 +13,13 @@ import Koloda
 import pop
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,
-    KolodaViewDataSource,KolodaViewDelegate{
+KolodaViewDataSource,KolodaViewDelegate {
     
     //TODO: PHAssetを使うとdeleteをした時にアラートが出てしまうので別のクラスを使う
     var photoAssets = [PHAsset]()
     var stackedAssets = [PHAsset]()
     var imageIndex: Int = 0
+    
     
     @IBOutlet var myImageView: UIImageView!
     //@IBOurlet weak var photoSetButtonItem!
@@ -40,7 +41,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.setUpButtons()
         self.getAllPhotosInfo()
         
-           }
+    }
     
     func setUpButtons() {
         NO_button.layer.cornerRadius = NO_button.bounds.width / 2.0
@@ -58,13 +59,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-   
+    
     //MARK: - kolodaViewDataSource
     func kolodaNumberOfCards(koloda: KolodaView) -> UInt {
         return UInt(self.photoAssets.count)
     }
     
     func kolodaViewForCardAtIndex(koloda: KolodaView, index: UInt) -> UIView {
+        print(index)
         let imageView = UIImageView(image: self.getAssetThumbnail(self.photoAssets[Int(index)]))
         imageView.contentMode = UIViewContentMode.ScaleAspectFit
         imageView.backgroundColor = UIColor.whiteColor()
@@ -72,25 +74,27 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return imageView
     }
     
+    
     func kolodaViewForCardOverlayAtIndex(koloda: KolodaView, index: UInt) -> OverlayView? {
         return NSBundle.mainBundle().loadNibNamed("OverlayView", owner: self, options: nil)[0] as? OverlayView
     }
-
+    
     //MARK: - KolodaViewDelegate
     func kolodaDidSwipedCardAtIndex(koloda: KolodaView, index: UInt, direction: SwipeResultDirection) {
         
         NSLog("%d番目のカードがスワイプされました", index)
         NSLog("カード == %@", koloda)
-        //NSLog("方向 == %@", direction.hashValue)
         
-        //Example: loading more cards
-        /*
-        if index >= 3 {
-           numberOfCards = 6
-           kolodaView.reloadData()
-    }
-        */
-
+        if direction == SwipeResultDirection.Right {
+            self.stackedAssets.append(self.photoAssets[Int(index)])
+        }
+        //NSLog("方向 == %@", direction.hashValue)
+        let ud = NSUserDefaults.standardUserDefaults()
+        ud.setInteger(Int(index + 1), forKey: "number")
+        ud.synchronize()
+        
+        // TODO: 削除ボタンを押したときにちゃんとなるようにする
+        // TODO: 0枚になったときにリロード
     }
     
     func kolodaDidRunOutOfCards(koloda: KolodaView) {
@@ -117,19 +121,33 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     private func getAllPhotosInfo(){
         photoAssets = []
         
-        
         // TODO: 今古い順なので順番を変えられるように
         let options = PHFetchOptions()
         options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         
-         let assets: PHFetchResult = PHAsset.fetchAssetsWithMediaType(.Image, options: nil)
-        assets.enumerateObjectsUsingBlock { (asset,index, stop) -> Void in
+        let assets: PHFetchResult = PHAsset.fetchAssetsWithMediaType(.Image, options: nil)
+        assets.enumerateObjectsUsingBlock { (asset, index, stop) -> Void in
             self.photoAssets.append(asset as! PHAsset)
         }
         
-        print(photoAssets)
+        let ud = NSUserDefaults.standardUserDefaults()
+        let number = ud.integerForKey("number")
+        
+        print(self.photoAssets.count)
+        for var i = 0; i < number; i++ {
+            self.stackedAssets.append(self.photoAssets[i])
+        }
+
+        for var j = 0; j < number; j++ {
+            self.photoAssets.removeFirst()
+        }
+        
+        //上のfor文のnumberの値がカメラロールで指定した画像になるようにしなくちゃいけない
+        //上の2つのうち上の方のfor文は必要なのかきく。stackedAssetsに入れるのは削除するやつだけじゃないのか、別に削除しないでとばすだけだから
+        
+        // print(photoAssets)
         let manager: PHImageManager = PHImageManager()
-        manager.requestImageForAsset(photoAssets[imageIndex],targetSize: CGSizeMake(10, 10), contentMode: .AspectFit , options: nil) { (image, info) -> Void in
+        manager.requestImageForAsset(photoAssets[imageIndex],targetSize: CGSizeMake(500, 500), contentMode: .AspectFit , options: nil) { (image, info) -> Void in
             //取得したimageをUIImageViewなどで表示する
             //self.myImageView!.image = self.getAssetThumbnail(self.photoAssets[self.imageIndex])
         }
@@ -145,14 +163,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             presentViewController(imagePickerController, animated: true, completion: nil)
         }
     }
-   
+    
     //MARK: UIImagePickerControllerDelegate
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, info: [String : AnyObject]?) {
         if info![UIImagePickerControllerOriginalImage] != nil {
             let image: UIImage = info![UIImagePickerControllerOriginalImage] as! UIImage
-            //myImageView.image = image
+            
+            
+            /*
+            for asset in self.photoAssets {
+            if asset == info
+            }
+            */
             
         }
+        print(info)
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -173,22 +198,40 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBAction func tapYES() {
         kolodaView?.swipe(SwipeResultDirection.Right)
+        
     }
     
     @IBAction func tapNO() {
         kolodaView?.swipe(SwipeResultDirection.Left)
+        
+        
     }
     
     @IBAction func tapRevert() {
         kolodaView?.revertAction()
+        self.stackedAssets.removeLast()
+        
     }
     
     @IBAction func deleteStackedImages() {
-        PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in PHAssetChangeRequest.deleteAssets(self.stackedAssets)}, completionHandler: { ( success, error) -> Void in
-            
-            print("削除完了")
-            //self.getAllPhotoInfo()
-            
+        
+        // print(self.stackedAssets)
+        
+        PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
+            PHAssetChangeRequest.deleteAssets(self.stackedAssets)
+            }, completionHandler: { ( success, error) -> Void in
+                
+                print("削除完了")
+                if error != nil {
+                    print(error)
+                }else {
+                    self.kolodaView?.reloadData()
+                    let userDefaults = NSUserDefaults.standardUserDefaults()
+                    userDefaults.setInteger(0, forKey: "number")
+                    userDefaults.synchronize()
+                }
+                //self.getAllPhotoInfo()
+                
         })
     }
     
@@ -198,18 +241,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     /*
     @IBAction func deleteImages() {
-        
-        // TODO: - 選んだ写真が入っているdeletePhotoAssets配列を一括で削除するコードに変える
-        let delTargetAsset = photoAssets.first as PHAsset?
-        if delTargetAsset != nil {
-            PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
-                // 削除などの変更はこのblocks内でリクエストする
-                PHAssetChangeRequest.deleteAssets(self.deletePhotoAssets)
-                }, completionHandler: { (success, error) -> Void in
-                    // 完了時の処理をここに記述
-                   self.getAllPhotosInfo()
-            })
-        }
-        */
+    
+    // TODO: - 選んだ写真が入っているdeletePhotoAssets配列を一括で削除するコードに変える
+    let delTargetAsset = photoAssets.first as PHAsset?
+    if delTargetAsset != nil {
+    PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
+    // 削除などの変更はこのblocks内でリクエストする
+    PHAssetChangeRequest.deleteAssets(self.deletePhotoAssets)
+    }, completionHandler: { (success, error) -> Void in
+    // 完了時の処理をここに記述
+    self.getAllPhotosInfo()
+    })
+    }
+    */
     
 }

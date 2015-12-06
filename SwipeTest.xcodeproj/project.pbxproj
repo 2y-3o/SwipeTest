@@ -11,6 +11,8 @@
 		6574FDA31BC9F3530057FDAB /* オリジナルアプリ-背景.png in Resources */ = {isa = PBXBuildFile; fileRef = 6574FDA21BC9F3530057FDAB /* オリジナルアプリ-背景.png */; };
 		6574FDA51BCA21550057FDAB /* オリジナルアプリ-背景2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6574FDA41BCA21550057FDAB /* オリジナルアプリ-背景2.png */; };
 		6574FDA91BCA2DB10057FDAB /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6574FDA81BCA2DB10057FDAB /* SecondViewController.swift */; };
+		65A9D03D1C01A4C400C3BFCB /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A9D03B1C01A4C400C3BFCB /* CardView.swift */; };
+		65A9D03E1C01A4C400C3BFCB /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65A9D03C1C01A4C400C3BFCB /* OverlayView.xib */; };
 		65CAB8951B6DFEC90073C9BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CAB8941B6DFEC90073C9BE /* AppDelegate.swift */; };
 		65CAB8971B6DFEC90073C9BE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CAB8961B6DFEC90073C9BE /* ViewController.swift */; };
 		65CAB89C1B6DFEC90073C9BE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65CAB89B1B6DFEC90073C9BE /* Images.xcassets */; };
@@ -41,6 +43,8 @@
 		6574FDA21BC9F3530057FDAB /* オリジナルアプリ-背景.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "オリジナルアプリ-背景.png"; sourceTree = "<group>"; };
 		6574FDA41BCA21550057FDAB /* オリジナルアプリ-背景2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "オリジナルアプリ-背景2.png"; sourceTree = "<group>"; };
 		6574FDA81BCA2DB10057FDAB /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		65A9D03B1C01A4C400C3BFCB /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		65A9D03C1C01A4C400C3BFCB /* OverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
 		65CAB88F1B6DFEC90073C9BE /* SwipeTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwipeTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65CAB8931B6DFEC90073C9BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65CAB8941B6DFEC90073C9BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +117,15 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		65A9D03A1C01A4C400C3BFCB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				65A9D03B1C01A4C400C3BFCB /* CardView.swift */,
+				65A9D03C1C01A4C400C3BFCB /* OverlayView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		65CAB8861B6DFEC90073C9BE = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +149,7 @@
 		65CAB8911B6DFEC90073C9BE /* SwipeTest */ = {
 			isa = PBXGroup;
 			children = (
+				65A9D03A1C01A4C400C3BFCB /* Views */,
 				65A602731C016269006B380D /* Images */,
 				65CAB8921B6DFEC90073C9BE /* Supporting Files */,
 				65CAB8941B6DFEC90073C9BE /* AppDelegate.swift */,
@@ -223,7 +237,7 @@
 			attributes = {
 				LastSwiftMigration = 0710;
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Ayano Ohya";
 				TargetAttributes = {
 					65CAB88E1B6DFEC90073C9BE = {
@@ -260,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65CAB89F1B6DFEC90073C9BE /* LaunchScreen.xib in Resources */,
+				65A9D03E1C01A4C400C3BFCB /* OverlayView.xib in Resources */,
 				65D634DD1B7251F8001D6676 /* swipe背景2(2).png in Resources */,
 				65D634D51B71E6F9001D6676 /* swipe 背景.png in Resources */,
 				65D634DC1B7251F8001D6676 /* swipe1(3).png in Resources */,
@@ -339,6 +354,7 @@
 				65CAB8B51B7094E90073C9BE /* CompareViewController.swift in Sources */,
 				65CAB8971B6DFEC90073C9BE /* ViewController.swift in Sources */,
 				65CAB8951B6DFEC90073C9BE /* AppDelegate.swift in Sources */,
+				65A9D03D1C01A4C400C3BFCB /* CardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,6 +410,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -461,6 +478,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "SwipeTest/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.litech.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -472,6 +490,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "SwipeTest/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.litech.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -490,6 +509,7 @@
 				);
 				INFOPLIST_FILE = "SwipeTestTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.litech.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwipeTest.app/SwipeTest";
 			};
@@ -505,6 +525,7 @@
 				);
 				INFOPLIST_FILE = "SwipeTestTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.litech.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwipeTest.app/SwipeTest";
 			};
