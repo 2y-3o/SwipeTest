@@ -19,7 +19,7 @@ KolodaViewDataSource,KolodaViewDelegate {
     var photoAssets = [PHAsset]()
     var stackedAssets = [PHAsset]()
     var imageIndex: Int = 0
-    
+    var photonumber: Int = 0
     
     @IBOutlet var myImageView: UIImageView!
     //@IBOurlet weak var photoSetButtonItem!
@@ -33,6 +33,9 @@ KolodaViewDataSource,KolodaViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        deleteButton.enabled = false
+        revertButton.enabled = false
+        
         self.title = "Select a Image"
         
         kolodaView.dataSource = self
@@ -41,7 +44,35 @@ KolodaViewDataSource,KolodaViewDelegate {
         self.setUpButtons()
         self.getAllPhotosInfo()
         
+        //initなどでNSNotification登録
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "update:", name: "dummy", object: nil)
+
+        
     }
+    
+    //関数で受け取った時のアクションを定義
+    func update(notification: NSNotification)  {
+         if let userInfo = notification.userInfo {
+             let result = userInfo["value"]! as! String
+             print("受信した数値：\(result)")
+            switch(result){
+            case "rightAction":
+                deleteButton.enabled = true
+                revertButton.enabled = true
+                break
+            case "leftAction":
+                revertButton.enabled = true
+            
+                break
+
+            default :
+                break
+            }
+            
+            
+        }
+    }
+    
     
     func setUpButtons() {
         NO_button.layer.cornerRadius = NO_button.bounds.width / 2.0
@@ -94,7 +125,6 @@ KolodaViewDataSource,KolodaViewDelegate {
         ud.synchronize()
         
         // TODO: 削除ボタンを押したときにちゃんとなるようにする
-        // TODO: 0枚になったときにリロード
     }
     
     func kolodaDidRunOutOfCards(koloda: KolodaView) {
@@ -134,22 +164,30 @@ KolodaViewDataSource,KolodaViewDelegate {
         let number = ud.integerForKey("number")
         
         print(self.photoAssets.count)
+        /*
         for var i = 0; i < number; i++ {
             self.stackedAssets.append(self.photoAssets[i])
         }
-
+*/
+        //前回行った作業の続きからできるようにした
         for var j = 0; j < number; j++ {
             self.photoAssets.removeFirst()
         }
+        print("あああああ")
+        print(number)
         
         //上のfor文のnumberの値がカメラロールで指定した画像になるようにしなくちゃいけない
-        //上の2つのうち上の方のfor文は必要なのかきく。stackedAssetsに入れるのは削除するやつだけじゃないのか、別に削除しないでとばすだけだから
+        //上の2つのうち上の方のfor文は必要なのかきく。stackedAssetsに入れるのは削除するやつだけじゃないのか、別に削除しないでとばすだけだから→解決
         
         // print(photoAssets)
         let manager: PHImageManager = PHImageManager()
         manager.requestImageForAsset(photoAssets[imageIndex],targetSize: CGSizeMake(500, 500), contentMode: .AspectFit , options: nil) { (image, info) -> Void in
             //取得したimageをUIImageViewなどで表示する
             //self.myImageView!.image = self.getAssetThumbnail(self.photoAssets[self.imageIndex])
+        }
+        
+        if stackedAssets.count > 0 {
+            deleteButton.enabled = true
         }
     }
     
@@ -158,16 +196,28 @@ KolodaViewDataSource,KolodaViewDelegate {
             // フォトライブラリの画像・写真選択画面を表示
             let imagePickerController = UIImagePickerController()
             imagePickerController.sourceType = .PhotoLibrary
-            imagePickerController.allowsEditing = true
+            imagePickerController.allowsEditing = false
             imagePickerController.delegate = self
             presentViewController(imagePickerController, animated: true, completion: nil)
         }
     }
     
     //MARK: UIImagePickerControllerDelegate
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        print(self.photoAssets[0])
+        
+        print("=======================")
+        print(info)
+        
+    }
+    /*
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, info: [String : AnyObject]?) {
+        
+        print(info)
+        
         if info![UIImagePickerControllerOriginalImage] != nil {
             let image: UIImage = info![UIImagePickerControllerOriginalImage] as! UIImage
+            
             
             
             /*
@@ -180,6 +230,7 @@ KolodaViewDataSource,KolodaViewDelegate {
         print(info)
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
+*/
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController){
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -198,12 +249,14 @@ KolodaViewDataSource,KolodaViewDelegate {
     
     @IBAction func tapYES() {
         kolodaView?.swipe(SwipeResultDirection.Right)
-        
+        deleteButton.enabled = true
+        revertButton.enabled = true
+
     }
     
     @IBAction func tapNO() {
         kolodaView?.swipe(SwipeResultDirection.Left)
-        
+        revertButton.enabled = true
         
     }
     
@@ -216,7 +269,7 @@ KolodaViewDataSource,KolodaViewDelegate {
     @IBAction func deleteStackedImages() {
         
         // print(self.stackedAssets)
-        
+      
         PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
             PHAssetChangeRequest.deleteAssets(self.stackedAssets)
             }, completionHandler: { ( success, error) -> Void in
@@ -233,6 +286,8 @@ KolodaViewDataSource,KolodaViewDelegate {
                 //self.getAllPhotoInfo()
                 
         })
+        
+        deleteButton.enabled = false
     }
     
     @IBAction func backToTop(){

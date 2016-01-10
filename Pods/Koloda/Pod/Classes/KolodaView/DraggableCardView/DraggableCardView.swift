@@ -18,6 +18,7 @@ protocol DraggableCardDelegate: class {
     
 }
 
+
 //Drag animation constants
 private let rotationMax: CGFloat = 1.0
 private let defaultRotationAngle = CGFloat(M_PI) / 10.0
@@ -46,6 +47,7 @@ public class DraggableCardView: UIView {
     private var yDistanceFromCenter: CGFloat = 0.0
     private var actionMargin: CGFloat = 0.0
     private var firstTouch = true
+    
     
     //MARK: Lifecycle
     init() {
@@ -261,6 +263,12 @@ public class DraggableCardView: UIView {
         let finishY = originalLocation.y + yDistanceFromCenter
         let finishPoint = CGPoint(x: CGRectGetWidth(UIScreen.mainScreen().bounds) * 2, y: finishY)
         
+        //NSNotificationのインスタンスを作成。["value"rightAction:]という辞書型のデータを持たせる
+        let n : NSNotification = NSNotification(name: "dummy", object: self, userInfo: ["value": "rightAction"])
+        //通知を送る
+        NSNotificationCenter.defaultCenter().postNotification(n)
+
+        
         self.overlayView?.overlayState = OverlayMode.Right
         self.overlayView?.alpha = 1.0
         self.delegate?.cardSwippedInDirection(self, direction: SwipeResultDirection.Right)
@@ -282,6 +290,12 @@ public class DraggableCardView: UIView {
     private func leftAction() {
         let finishY = originalLocation.y + yDistanceFromCenter
         let finishPoint = CGPoint(x: -CGRectGetWidth(UIScreen.mainScreen().bounds), y: finishY)
+        
+        //NSNotificationのインスタンスを作成。["value":100]という辞書型のデータを持たせる
+        let n : NSNotification = NSNotification(name: "dummy", object: self, userInfo: ["value": "leftAction"])
+        //通知を送る
+        NSNotificationCenter.defaultCenter().postNotification(n)
+
         
         self.overlayView?.overlayState = OverlayMode.Left
         self.overlayView?.alpha = 1.0
@@ -360,6 +374,7 @@ public class DraggableCardView: UIView {
                     return
             })
         }
+        
     }
     
     func swipeRight () {
@@ -367,6 +382,7 @@ public class DraggableCardView: UIView {
             
             let finishPoint = CGPoint(x: CGRectGetWidth(UIScreen.mainScreen().bounds) * 2, y: center.y)
             self.delegate?.cardSwippedInDirection(self, direction: SwipeResultDirection.Right)
+            
             UIView.animateWithDuration(cardSwipeActionAnimationDuration, delay: 0.0, options: .CurveLinear, animations: {
                     self.center = finishPoint
                     self.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_4))
