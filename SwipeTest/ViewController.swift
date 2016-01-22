@@ -16,10 +16,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 KolodaViewDataSource,KolodaViewDelegate {
     
     //TODO: PHAssetを使うとdeleteをした時にアラートが出てしまうので別のクラスを使う
-    var photoAssets = [PHAsset]()
-    var stackedAssets = [PHAsset]()
+    var photoAssets: [PHAsset] = []
+    var stackedAssets: [PHAsset] = []
     var imageIndex: Int = 0
     var photonumber: Int = 0
+    var number: Int = 0
+    let ud = NSUserDefaults.standardUserDefaults()
+    
+
     
     @IBOutlet var myImageView: UIImageView!
     //@IBOurlet weak var photoSetButtonItem!
@@ -59,9 +63,11 @@ KolodaViewDataSource,KolodaViewDelegate {
             case "rightAction":
                 deleteButton.enabled = true
                 revertButton.enabled = true
+                photonumber = photonumber + 1
                 break
             case "leftAction":
                 revertButton.enabled = true
+                photonumber = photonumber + 1
             
                 break
 
@@ -118,9 +124,13 @@ KolodaViewDataSource,KolodaViewDelegate {
         
         if direction == SwipeResultDirection.Right {
             self.stackedAssets.append(self.photoAssets[Int(index)])
+            
+//            ud.setObject(stackedAssets, forKey: "stackedAssets")
+            var data:NSData = NSData()
+            data = NSKeyedArchiver.archivedDataWithRootObject(stackedAssets)
+            NSUserDefaults.standardUserDefaults().setObject(data, forKey: "stackedAssets")
         }
         //NSLog("方向 == %@", direction.hashValue)
-        let ud = NSUserDefaults.standardUserDefaults()
         ud.setInteger(Int(index + 1), forKey: "number")
         ud.synchronize()
         
@@ -129,7 +139,10 @@ KolodaViewDataSource,KolodaViewDelegate {
     
     func kolodaDidRunOutOfCards(koloda: KolodaView) {
         //Example: reloading
+        ud.setInteger(0, forKey: "number")
         kolodaView.resetCurrentCardNumber()
+        getAllPhotosInfo()
+        
     }
     
     func kolodaDidSelectCardAtIndex(koloda: KolodaView, index: UInt) {
@@ -160,8 +173,7 @@ KolodaViewDataSource,KolodaViewDelegate {
             self.photoAssets.append(asset as! PHAsset)
         }
         
-        let ud = NSUserDefaults.standardUserDefaults()
-        let number = ud.integerForKey("number")
+        number = ud.integerForKey("number")
         
         print(self.photoAssets.count)
         /*
@@ -173,8 +185,6 @@ KolodaViewDataSource,KolodaViewDelegate {
         for var j = 0; j < number; j++ {
             self.photoAssets.removeFirst()
         }
-        print("あああああ")
-        print(number)
         
         //上のfor文のnumberの値がカメラロールで指定した画像になるようにしなくちゃいけない
         //上の2つのうち上の方のfor文は必要なのかきく。stackedAssetsに入れるのは削除するやつだけじゃないのか、別に削除しないでとばすだけだから→解決
@@ -269,6 +279,9 @@ KolodaViewDataSource,KolodaViewDelegate {
     @IBAction func deleteStackedImages() {
         
         // print(self.stackedAssets)
+        let  data: AnyObject? = NSUserDefaults.standardUserDefaults().objectForKey("stackedAssets")
+        stackedAssets =  NSKeyedUnarchiver.unarchiveObjectWithData(data as! NSData) as! [PHAsset]
+//        stackedAssets = ud.arrayForKey("stackedAssets") as! [PHAsset]
       
         PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
             PHAssetChangeRequest.deleteAssets(self.stackedAssets)
@@ -279,9 +292,8 @@ KolodaViewDataSource,KolodaViewDelegate {
                     print(error)
                 }else {
                     self.kolodaView?.reloadData()
-                    let userDefaults = NSUserDefaults.standardUserDefaults()
-                    userDefaults.setInteger(0, forKey: "number")
-                    userDefaults.synchronize()
+                    self.ud.setInteger(0, forKey: "number")
+                    self.ud.synchronize()
                 }
                 //self.getAllPhotoInfo()
                 
