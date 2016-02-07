@@ -40,7 +40,6 @@ KolodaViewDataSource,KolodaViewDelegate {
         
         self.setUpButtons()
         self.getAllPhotosInfo()
-        
     }
     
     func setUpButtons() {
@@ -52,7 +51,15 @@ KolodaViewDataSource,KolodaViewDelegate {
         YES_button.clipsToBounds = true
         revertButton.clipsToBounds = true
         deleteButton.clipsToBounds = true
-        
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(true)
+        // 画面が消えた時に現在表示しているViewの情報を保存
+        let asset = self.photoAssets[kolodaView.currentCardNumber]
+        let filename = asset.valueForKey("filename") as? String
+        NSUserDefaults.standardUserDefaults().setObject(filename, forKey: "lastCardName")
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
     
     override func didReceiveMemoryWarning() {
@@ -81,20 +88,9 @@ KolodaViewDataSource,KolodaViewDelegate {
     
     //MARK: - KolodaViewDelegate
     func kolodaDidSwipedCardAtIndex(koloda: KolodaView, index: UInt, direction: SwipeResultDirection) {
-        
-        NSLog("%d番目のカードがスワイプされました", index)
-        NSLog("カード == %@", koloda)
-        
         if direction == SwipeResultDirection.Right {
             self.stackedAssets.append(self.photoAssets[Int(index)])
         }
-        //NSLog("方向 == %@", direction.hashValue)
-        let ud = NSUserDefaults.standardUserDefaults()
-        ud.setInteger(Int(index + 1), forKey: "number")
-        ud.synchronize()
-        
-        // TODO: 削除ボタンを押したときにちゃんとなるようにする
-        // TODO: 0枚になったときにリロード
     }
     
     func kolodaDidRunOutOfCards(koloda: KolodaView) {
@@ -118,64 +114,12 @@ KolodaViewDataSource,KolodaViewDelegate {
         return nil
     }
     
-    private func getAllPhotosInfo(){
-        photoAssets = []
-        
-        // TODO: 今古い順なので順番を変えられるように
-        let options = PHFetchOptions()
-        options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
-        
-        let assets: PHFetchResult = PHAsset.fetchAssetsWithMediaType(.Image, options: nil)
-        assets.enumerateObjectsUsingBlock { (asset, index, stop) -> Void in
-            self.photoAssets.append(asset as! PHAsset)
-        }
-        
-        let ud = NSUserDefaults.standardUserDefaults()
-        let number = ud.integerForKey("number")
-        
-        print(self.photoAssets.count)
-        for var i = 0; i < number; i++ {
-            self.stackedAssets.append(self.photoAssets[i])
-        }
-
-        for var j = 0; j < number; j++ {
-            self.photoAssets.removeFirst()
-        }
-        
-        //上のfor文のnumberの値がカメラロールで指定した画像になるようにしなくちゃいけない
-        //上の2つのうち上の方のfor文は必要なのかきく。stackedAssetsに入れるのは削除するやつだけじゃないのか、別に削除しないでとばすだけだから
-        
-        // print(photoAssets)
-        let manager: PHImageManager = PHImageManager()
-        manager.requestImageForAsset(photoAssets[imageIndex],targetSize: CGSizeMake(500, 500), contentMode: .AspectFit , options: nil) { (image, info) -> Void in
-            //取得したimageをUIImageViewなどで表示する
-            //self.myImageView!.image = self.getAssetThumbnail(self.photoAssets[self.imageIndex])
-        }
-    }
-    
-    @IBAction func tapedPhotoBtn() {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary){
-            // フォトライブラリの画像・写真選択画面を表示
-            let imagePickerController = UIImagePickerController()
-            imagePickerController.sourceType = .PhotoLibrary
-            imagePickerController.allowsEditing = true
-            imagePickerController.delegate = self
-            presentViewController(imagePickerController, animated: true, completion: nil)
-        }
-    }
     
     //MARK: UIImagePickerControllerDelegate
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, info: [String : AnyObject]?) {
         if info![UIImagePickerControllerOriginalImage] != nil {
             let image: UIImage = info![UIImagePickerControllerOriginalImage] as! UIImage
-            
-            
-            /*
-            for asset in self.photoAssets {
-            if asset == info
-            }
-            */
-            
+            print(image)
         }
         print(info)
         picker.dismissViewControllerAnimated(true, completion: nil)
@@ -185,15 +129,17 @@ KolodaViewDataSource,KolodaViewDelegate {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    //MARK: - Private
-    func getAssetThumbnail(asset: PHAsset) -> UIImage {
-        let manager = PHImageManager.defaultManager()
-        let option = PHImageRequestOptions()
-        var thumbnail = UIImage()
-        option.synchronous = true
-        manager.requestImageForAsset(asset, targetSize: CGSize(width: 560.0, height: 560.0), contentMode: .AspectFit, options: option, resultHandler: {(result, info)->Void in thumbnail = result!
-        })
-        return thumbnail
+    
+    // MARK: - Private
+    @IBAction func tapedPhotoBtn() {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary){
+            // フォトライブラリの画像・写真選択画面を表示
+            let imagePickerController = UIImagePickerController()
+            imagePickerController.sourceType = .PhotoLibrary
+            imagePickerController.allowsEditing = true
+            imagePickerController.delegate = self
+            presentViewController(imagePickerController, animated: true, completion: nil)
+        }
     }
     
     @IBAction func tapYES() {
@@ -226,12 +172,7 @@ KolodaViewDataSource,KolodaViewDelegate {
                     print(error)
                 }else {
                     self.kolodaView?.reloadData()
-                    let userDefaults = NSUserDefaults.standardUserDefaults()
-                    userDefaults.setInteger(0, forKey: "number")
-                    userDefaults.synchronize()
                 }
-                //self.getAllPhotoInfo()
-                
         })
     }
     
@@ -239,20 +180,56 @@ KolodaViewDataSource,KolodaViewDelegate {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    /*
-    @IBAction func deleteImages() {
     
-    // TODO: - 選んだ写真が入っているdeletePhotoAssets配列を一括で削除するコードに変える
-    let delTargetAsset = photoAssets.first as PHAsset?
-    if delTargetAsset != nil {
-    PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
-    // 削除などの変更はこのblocks内でリクエストする
-    PHAssetChangeRequest.deleteAssets(self.deletePhotoAssets)
-    }, completionHandler: { (success, error) -> Void in
-    // 完了時の処理をここに記述
-    self.getAllPhotosInfo()
-    })
+    // MARK: - GetAssets
+    private func getAllPhotosInfo(){
+        photoAssets = []
+        
+        // TODO: 今古い順なので順番を変えられるように
+        let options = PHFetchOptions()
+        options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        
+        let assets: PHFetchResult = PHAsset.fetchAssetsWithMediaType(.Image, options: nil)
+        assets.enumerateObjectsUsingBlock { (asset, index, stop) -> Void in
+            self.photoAssets.append(asset as! PHAsset)
+        }
+        
+        let ud = NSUserDefaults.standardUserDefaults()
+        let lastAssetString = ud.objectForKey("lastCardName") as? String
+        
+        var currentNumber: Int = 0
+        for lastCard in self.photoAssets {
+            print(lastCard.valueForKey("filename"))
+            if lastCard.valueForKey("filename") as? String == lastAssetString {
+                print("HIT！！！！")
+                return;
+            }else {
+                self.photoAssets.removeFirst()
+                self.photoAssets.append(lastCard)
+            }
+            currentNumber++
+        }
+        
+        //上のfor文のnumberの値がカメラロールで指定した画像になるようにしなくちゃいけない
+        //上の2つのうち上の方のfor文は必要なのかきく。stackedAssetsに入れるのは削除するやつだけじゃないのか、別に削除しないでとばすだけだから
+        
+        let manager: PHImageManager = PHImageManager()
+        if currentNumber < photoAssets.count {
+            manager.requestImageForAsset(photoAssets[currentNumber],targetSize: CGSizeMake(500, 500), contentMode: .AspectFit , options: nil) { (image, info) -> Void in
+                //取得したimageをUIImageViewなどで表示する
+                //self.myImageView!.image = self.getAssetThumbnail(self.photoAssets[self.imageIndex])
+            }
+        }
     }
-    */
     
+    func getAssetThumbnail(asset: PHAsset) -> UIImage {
+        let manager = PHImageManager.defaultManager()
+        let option = PHImageRequestOptions()
+        var thumbnail = UIImage()
+        option.synchronous = true
+        manager.requestImageForAsset(asset, targetSize: CGSize(width: 560.0, height: 560.0), contentMode: .AspectFit, options: option, resultHandler: {(result, info)->Void in thumbnail = result!
+        })
+        return thumbnail
+    }
+
 }
