@@ -74,6 +74,8 @@ KolodaViewDataSource,KolodaViewDelegate {
     
     func kolodaViewForCardAtIndex(koloda: KolodaView, index: UInt) -> UIView {
         print(index)
+        
+        
         let imageView = UIImageView(image: self.getAssetThumbnail(self.photoAssets[Int(index)]))
         imageView.contentMode = UIViewContentMode.ScaleAspectFit
         imageView.backgroundColor = UIColor.whiteColor()
@@ -95,6 +97,12 @@ KolodaViewDataSource,KolodaViewDelegate {
     
     func kolodaDidRunOutOfCards(koloda: KolodaView) {
         //Example: reloading
+        // self.photoAssetsからself.stackedAssetsを引く(削除する)
+        for var i = 0; i < self.photoAssets.count; i++ {
+            if photoAssets[i] == stackedAssets[i] {
+            }
+        }
+
         kolodaView.resetCurrentCardNumber()
     }
     
@@ -172,7 +180,7 @@ KolodaViewDataSource,KolodaViewDelegate {
                     print(error)
                 }else {
                     self.kolodaView?.reloadData()
-                }
+            }
         })
     }
     
