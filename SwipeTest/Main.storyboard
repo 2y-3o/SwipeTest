@@ -117,7 +117,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="8aD-5i-HxS">
+                    <navigationItem key="navigationItem" id="8aD-5i-HxS" colorLabel="IBBuiltInLabel-Orange">
                         <barButtonItem key="leftBarButtonItem" title="　戻る" id="46n-eU-Dxi">
                             <connections>
                                 <action selector="backToTop" destination="amf-JJ-7RS" id="6yT-sw-rZk"/>

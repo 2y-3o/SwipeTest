@@ -99,9 +99,27 @@ KolodaViewDataSource,KolodaViewDelegate {
         //Example: reloading
         // self.photoAssetsからself.stackedAssetsを引く(削除する)
         for var i = 0; i < self.photoAssets.count; i++ {
-            if photoAssets[i] == stackedAssets[i] {
-            }
+            
         }
+        
+        var i = 0
+        var removeIndexArray = [Int]()
+        for photoAsset in self.photoAssets {
+            
+            for stackedAsset in self.stackedAssets {
+                if photoAsset.valueForKey("filename") as! String == stackedAsset.valueForKey("filename") as! String {
+                    // 全部の写真の中から、捨てる用の写真と一致しているものを検索
+                    print("削除対象の画像が見つかりました", i, "番目のカードです")
+                    removeIndexArray.insert(i, atIndex: 0)
+                }
+            }
+            i++
+        }
+        
+        for index in removeIndexArray {
+            self.photoAssets.removeAtIndex(index)
+        }
+        
 
         kolodaView.resetCurrentCardNumber()
     }
@@ -124,14 +142,27 @@ KolodaViewDataSource,KolodaViewDelegate {
     
     
     //MARK: UIImagePickerControllerDelegate
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, info: [String : AnyObject]?) {
-        if info![UIImagePickerControllerOriginalImage] != nil {
-            let image: UIImage = info![UIImagePickerControllerOriginalImage] as! UIImage
-            print(image)
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        print(info["filename"])
+        for photoAsset in photoAssets {
+            let URL = info["UIImagePickerControllerReferenceURL"] as! NSURL
+            let fetchResult = PHAsset.fetchAssetsWithALAssetURLs([URL], options: nil)
+            let asset = fetchResult.firstObject;
+            if photoAsset.valueForKey("filename") as! String == asset?.valueForKey("filename") as! String {
+                // 選んだ写真と同じphotoAssetを探す
+                print("みーっけ")
+                break
+            }else {
+                self.photoAssets.removeFirst()
+                self.photoAssets.append(photoAsset)
+            }
         }
-        print(info)
+        
+        // TODO: ここから
         picker.dismissViewControllerAnimated(true, completion: nil)
+        kolodaView.reloadData()
     }
+    
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController){
         self.dismissViewControllerAnimated(true, completion: nil)
