@@ -144,6 +144,7 @@ KolodaViewDataSource,KolodaViewDelegate {
     //MARK: UIImagePickerControllerDelegate
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         print(info["filename"])
+        
         for photoAsset in photoAssets {
             let URL = info["UIImagePickerControllerReferenceURL"] as! NSURL
             let fetchResult = PHAsset.fetchAssetsWithALAssetURLs([URL], options: nil)
