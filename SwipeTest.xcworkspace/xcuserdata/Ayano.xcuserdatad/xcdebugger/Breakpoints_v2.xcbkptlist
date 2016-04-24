@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwipeTest/ViewController.swift"
-            timestampString = "478926168.127403"
+            timestampString = "483172912.963808"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "365"
-            endingLineNumber = "365">
+            startingLineNumber = "372"
+            endingLineNumber = "372">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

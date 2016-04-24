@@ -140,10 +140,16 @@ KolodaViewDataSource,KolodaViewDelegate {
         return nil
     }
     
-    
+    //カメラロールから写真を選んだとき
     //MARK: UIImagePickerControllerDelegate
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         print(info["filename"])
+        
+        let ud = NSUserDefaults.standardUserDefaults()
+        ud.removeObjectForKey("lastCardName")
+        ud.synchronize()
+        
+        self.getAllPhotosInfo()
         
         for photoAsset in photoAssets {
             let URL = info["UIImagePickerControllerReferenceURL"] as! NSURL
@@ -152,6 +158,7 @@ KolodaViewDataSource,KolodaViewDelegate {
             if photoAsset.valueForKey("filename") as! String == asset?.valueForKey("filename") as! String {
                 // 選んだ写真と同じphotoAssetを探す
                 print("みーっけ")
+                kolodaView.resetCurrentCardNumber()
                 break
             }else {
                 self.photoAssets.removeFirst()
