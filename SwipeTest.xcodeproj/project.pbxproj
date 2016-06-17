@@ -25,6 +25,7 @@
 		6569C8881D0ADDAD00CA5010 /* folder-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 6569C8871D0ADDAD00CA5010 /* folder-4.png */; };
 		6569C88A1D0ADDE900CA5010 /* garbage-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6569C8891D0ADDE900CA5010 /* garbage-2.png */; };
 		6569C88C1D14057E00CA5010 /* checked-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6569C88B1D14057E00CA5010 /* checked-2.png */; };
+		6569E6441D1408E900CA5010 /* send-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6569E6431D1408E900CA5010 /* send-2.png */; };
 		6574FDA31BC9F3530057FDAB /* オリジナルアプリ-背景.png in Resources */ = {isa = PBXBuildFile; fileRef = 6574FDA21BC9F3530057FDAB /* オリジナルアプリ-背景.png */; };
 		6574FDA51BCA21550057FDAB /* オリジナルアプリ-背景2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6574FDA41BCA21550057FDAB /* オリジナルアプリ-背景2.png */; };
 		6574FDA91BCA2DB10057FDAB /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6574FDA81BCA2DB10057FDAB /* SecondViewController.swift */; };
@@ -73,6 +74,7 @@
 		6569C8871D0ADDAD00CA5010 /* folder-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "folder-4.png"; sourceTree = "<group>"; };
 		6569C8891D0ADDE900CA5010 /* garbage-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "garbage-2.png"; sourceTree = "<group>"; };
 		6569C88B1D14057E00CA5010 /* checked-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checked-2.png"; sourceTree = "<group>"; };
+		6569E6431D1408E900CA5010 /* send-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send-2.png"; sourceTree = "<group>"; };
 		6574FDA21BC9F3530057FDAB /* オリジナルアプリ-背景.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "オリジナルアプリ-背景.png"; sourceTree = "<group>"; };
 		6574FDA41BCA21550057FDAB /* オリジナルアプリ-背景2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "オリジナルアプリ-背景2.png"; sourceTree = "<group>"; };
 		6574FDA81BCA2DB10057FDAB /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 		65CAB8911B6DFEC90073C9BE /* SwipeTest */ = {
 			isa = PBXGroup;
 			children = (
+				6569E6431D1408E900CA5010 /* send-2.png */,
 				6569C88B1D14057E00CA5010 /* checked-2.png */,
 				6569C8891D0ADDE900CA5010 /* garbage-2.png */,
 				6569C8871D0ADDAD00CA5010 /* folder-4.png */,
@@ -356,6 +359,7 @@
 				6574FDA51BCA21550057FDAB /* オリジナルアプリ-背景2.png in Resources */,
 				6569C8821D0ADBC600CA5010 /* garbage.png in Resources */,
 				65CAB89C1B6DFEC90073C9BE /* Images.xcassets in Resources */,
+				6569E6441D1408E900CA5010 /* send-2.png in Resources */,
 				65EF955B1BB7BFA00001308E /* Main.storyboard in Resources */,
 				65D634D71B71EAED001D6676 /* swipe背景2.png in Resources */,
 				650A193E1CCCA71D0034E300 /* Default-667h@2x.png in Resources */,
