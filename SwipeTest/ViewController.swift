@@ -34,7 +34,8 @@ KolodaViewDataSource,KolodaViewDelegate {
         super.viewDidLoad()
         
         self.title = "Select a Image"
-        
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 229/255,green: 229/255,blue: 229/255, alpha:1)
+
         kolodaView.dataSource = self
         kolodaView.delegate = self
         
@@ -43,6 +44,7 @@ KolodaViewDataSource,KolodaViewDelegate {
     }
     
     func setUpButtons() {
+        
         NO_button.layer.cornerRadius = NO_button.bounds.width / 2.0
         YES_button.layer.cornerRadius = YES_button.bounds.width / 2.0
         revertButton.layer.cornerRadius = revertButton.bounds.width / 2.0
@@ -71,7 +73,6 @@ KolodaViewDataSource,KolodaViewDelegate {
     func kolodaNumberOfCards(koloda: KolodaView) -> UInt {
         return UInt(self.photoAssets.count)
     }
-    
     func kolodaViewForCardAtIndex(koloda: KolodaView, index: UInt) -> UIView {
         print(index)
         
@@ -202,7 +203,7 @@ KolodaViewDataSource,KolodaViewDelegate {
     
     @IBAction func tapRevert() {
         kolodaView?.revertAction()
-        self.stackedAssets.removeLast()
+        self.photoAssets.removeLast()
         
     }
     

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="W2f-ar-8lt">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="WOh-Rh-Lsa">
+            <objects>
+                <viewController id="cZQ-7D-ifg" customClass="ViewController" customModule="SwipeTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OM6-ep-D5e"/>
+                        <viewControllerLayoutGuide type="bottom" id="J0d-j0-gs0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Vmw-1W-NZQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="オリジナルアプリ-背景.png" translatesAutoresizingMaskIntoConstraints="NO" id="M0M-l6-az8">
+                                <rect key="frame" x="-1" y="64" width="321" height="521"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K8g-Ls-gce">
+                                <rect key="frame" x="164" y="570" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o3R-z0-FHI">
+                                <rect key="frame" x="12" y="420" width="50" height="50"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="△">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapRevert" destination="cZQ-7D-ifg" eventType="touchUpInside" id="KY0-UG-o4e"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xCM-ev-yfV">
+                                <rect key="frame" x="70" y="468" width="80" height="80"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <state key="normal" title="×">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapNO" destination="cZQ-7D-ifg" eventType="touchUpInside" id="8Mb-0W-PGz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g8n-ud-YG0">
+                                <rect key="frame" x="168" y="468" width="80" height="80"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <state key="normal" title="⚪︎">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapYES" destination="cZQ-7D-ifg" eventType="touchUpInside" id="GiD-Jv-Zgn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CiY-ah-iAa">
+                                <rect key="frame" x="256" y="420" width="50" height="50"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="◎">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteStackedImages" destination="cZQ-7D-ifg" eventType="touchUpInside" id="WdW-br-TaV"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7xZ-c0-VzZ" customClass="KolodaView" customModule="Koloda">
+                                <rect key="frame" x="20" y="113" width="280" height="280"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q0a-p0-Vmr">
+                                <rect key="frame" x="20" y="113" width="280" height="280"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="avR-JR-hLB">
+                        <barButtonItem key="leftBarButtonItem" title="　戻る" id="WrJ-qz-dGg">
+                            <connections>
+                                <action selector="backToTop" destination="cZQ-7D-ifg" id="lHj-i3-6ys"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="カメラ" id="miO-NK-IOl">
+                            <connections>
+                                <action selector="tapedPhotoBtn" destination="cZQ-7D-ifg" id="vhs-Z9-5NG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="NO_button" destination="xCM-ev-yfV" id="gvA-Dz-TFe"/>
+                        <outlet property="YES_button" destination="g8n-ud-YG0" id="nHO-QC-yZC"/>
+                        <outlet property="deleteButton" destination="CiY-ah-iAa" id="RTm-Vw-R9d"/>
+                        <outlet property="kolodaView" destination="7xZ-c0-VzZ" id="p52-fr-Ufq"/>
+                        <outlet property="myImageView" destination="Q0a-p0-Vmr" id="Jjg-p0-a3I"/>
+                        <outlet property="photoSetBtn" destination="miO-NK-IOl" id="LGv-pI-SDJ"/>
+                        <outlet property="revertButton" destination="o3R-z0-FHI" id="e3W-5H-xyE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uwM-Ei-d7J" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="911" y="102"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="bIr-nn-odz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="W2f-ar-8lt" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ELC-nn-UMp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="cZQ-7D-ifg" kind="relationship" relationship="rootViewController" id="Q7R-Hb-ZI9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tdU-34-gKa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="491" y="102"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="オリジナルアプリ-背景.png" width="320" height="568"/>
+    </resources>
+</document>

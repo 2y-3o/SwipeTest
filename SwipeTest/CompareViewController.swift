@@ -19,13 +19,13 @@ class CompareViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     @IBOutlet weak var photoSetBtn: UIButton!
     
-    
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var imageView2: UIImageView!
     
     
     var myImagePicker: UIImagePickerController!
     var myImagePicker2: UIImagePickerController!
+    
     
 //    override func viewDidLoad() {
 //        super.viewDidLoad()
