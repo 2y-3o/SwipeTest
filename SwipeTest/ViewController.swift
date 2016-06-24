@@ -207,8 +207,7 @@ KolodaViewDataSource,KolodaViewDelegate {
         if photoAssets[kolodaView.currentCardNumber] == stackedAssets.last{
             stackedAssets.removeLast()
         }
-//        self.photoAssets.removeLast()
-        
+
     }
     
     @IBAction func deleteStackedImages() {
