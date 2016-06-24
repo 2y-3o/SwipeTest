@@ -74,6 +74,7 @@ KolodaViewDataSource,KolodaViewDelegate {
         return UInt(self.photoAssets.count)
     }
     func kolodaViewForCardAtIndex(koloda: KolodaView, index: UInt) -> UIView {
+        print("-----------")
         print(index)
         
         
@@ -203,7 +204,10 @@ KolodaViewDataSource,KolodaViewDelegate {
     
     @IBAction func tapRevert() {
         kolodaView?.revertAction()
-        self.photoAssets.removeLast()
+        if photoAssets[kolodaView.currentCardNumber] == stackedAssets.last{
+            stackedAssets.removeLast()
+        }
+//        self.photoAssets.removeLast()
         
     }
     
