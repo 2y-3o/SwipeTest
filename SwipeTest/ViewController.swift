@@ -23,30 +23,45 @@ KolodaViewDataSource,KolodaViewDelegate {
     
     @IBOutlet var myImageView: UIImageView!
     //@IBOurlet weak var photoSetButtonItem!
+
     @IBOutlet var kolodaView: KolodaView!
     @IBOutlet var NO_button: UIButton!
     @IBOutlet var YES_button: UIButton!
     @IBOutlet var revertButton: UIButton!
     @IBOutlet var deleteButton: UIButton!
     @IBOutlet weak var photoSetBtn: UIBarButtonItem!
+    @IBOutlet var deleteImageView: UIImageView!
+    
+    @IBOutlet var stackedNumberLabel: UILabel!
+    
+    @IBOutlet var saveview: UIImageView!
+    @IBOutlet var dumpview: UIImageView!
+    
+    
+    //名前変える
+    let label: UILabel  = UILabel()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Select a Image"
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 229/255,green: 229/255,blue: 229/255, alpha:1)
+        self.title = "Photton"
+
+//        self.navigationController?.navigationBar.barTintColor = UIColor(red: 229/255,green: 229/255,blue: 229/255, alpha:1)
 
         kolodaView.dataSource = self
         kolodaView.delegate = self
         
         self.setUpButtons()
         self.getAllPhotosInfo()
+        
+        
     }
     
     func setUpButtons() {
         
-        NO_button.layer.cornerRadius = NO_button.bounds.width / 2.0
-        YES_button.layer.cornerRadius = YES_button.bounds.width / 2.0
+//        NO_button.layer.cornerRadius = NO_button.bounds.width / 2.0
+//        YES_button.layer.cornerRadius = YES_button.bounds.width / 2.0
         revertButton.layer.cornerRadius = revertButton.bounds.width / 2.0
         deleteButton.layer.cornerRadius = deleteButton.bounds.width / 2.0
         NO_button.clipsToBounds = true
@@ -54,6 +69,8 @@ KolodaViewDataSource,KolodaViewDelegate {
         revertButton.clipsToBounds = true
         deleteButton.clipsToBounds = true
     }
+    
+    
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(true)
@@ -79,10 +96,19 @@ KolodaViewDataSource,KolodaViewDelegate {
         
         
         let imageView = UIImageView(image: self.getAssetThumbnail(self.photoAssets[Int(index)]))
-        imageView.contentMode = UIViewContentMode.ScaleAspectFit
+        imageView.contentMode = UIViewContentMode.ScaleAspectFill
+        imageView.clipsToBounds = true
         imageView.backgroundColor = UIColor.whiteColor()
         //imageView.setNeedsDisplay()
+        
+//        imageView.layer.borderColor = UIColor(red: 27/255, green: 20/255, blue: 100/255, alpha: 1).CGColor
+        imageView.layer.borderColor = UIColor.whiteColor().CGColor
+        imageView.layer.borderWidth = 3
+        imageView.layer.cornerRadius = 25
+        
         return imageView
+        
+        
     }
     
     
@@ -93,7 +119,28 @@ KolodaViewDataSource,KolodaViewDelegate {
     //MARK: - KolodaViewDelegate
     func kolodaDidSwipedCardAtIndex(koloda: KolodaView, index: UInt, direction: SwipeResultDirection) {
         if direction == SwipeResultDirection.Right {
+            UIView.animateWithDuration(0.1, animations: { () -> Void in
+                self.deleteImageView.transform = CGAffineTransformMakeScale(0.9, 0.9)
+                self.deleteButton.transform = CGAffineTransformMakeScale(0.9, 0.9)
+                self.stackedNumberLabel.transform = CGAffineTransformMakeScale(0.9, 0.9)
+                }, completion: { (Bool) -> Void in
+                    UIView.animateWithDuration(0.2, animations: { () -> Void in
+                        self.deleteImageView.transform = CGAffineTransformMakeScale(1.1, 1.1)
+                        self.deleteButton.transform = CGAffineTransformMakeScale(1.1, 1.1)
+                        self.stackedNumberLabel.transform = CGAffineTransformMakeScale(1.1, 1.1)
+                        }, completion: { (Bool) -> Void in
+                            self.deleteButton.transform = CGAffineTransformMakeScale(1.0, 1.0)
+                            self.deleteImageView.transform = CGAffineTransformMakeScale(1.0, 1.0)
+                            self.stackedNumberLabel.transform = CGAffineTransformMakeScale(1.0, 1.0)
+                            
+                            
+                    })
+
+                    
+            })
             self.stackedAssets.append(self.photoAssets[Int(index)])
+            stackedNumberLabel.text = String(stackedAssets.count)
+            
         }
     }
     
@@ -140,6 +187,23 @@ KolodaViewDataSource,KolodaViewDelegate {
     
     func kolodaBackgroundCardAnimation(koloda: KolodaView) -> POPPropertyAnimation? {
         return nil
+    }
+    func kolodaDraggedCard(koloda: KolodaView, finishPercent: CGFloat, direction: SwipeResultDirection) {
+//        label.frame = CGRectMake(0, 0, 100, 100)
+
+        if direction == SwipeResultDirection.Right {
+//            label.text = "aaaaaaa"
+//            label.textColor = UIColor.redColor()
+            dumpview.transform = CGAffineTransformMakeRotation(45 * CGFloat(M_PI/180))
+            koloda.viewForCardAtIndex(koloda.currentCardNumber)?.addSubview(dumpview)
+            dumpview.alpha = finishPercent/100.0
+
+        };if direction == SwipeResultDirection.Left{
+            saveview.transform = CGAffineTransformMakeRotation(-45 * CGFloat(M_PI/180))
+            koloda.viewForCardAtIndex(koloda.currentCardNumber)?.addSubview(saveview)
+            saveview.alpha = finishPercent/100.0
+            
+        }
     }
     
     //カメラロールから写真を選んだとき
@@ -193,6 +257,7 @@ KolodaViewDataSource,KolodaViewDelegate {
     
     @IBAction func tapYES() {
         kolodaView?.swipe(SwipeResultDirection.Right)
+        
         
     }
     
@@ -282,5 +347,6 @@ KolodaViewDataSource,KolodaViewDelegate {
         })
         return thumbnail
     }
+    
 
 }

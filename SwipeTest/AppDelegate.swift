@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+
         let storyboard: UIStoryboard = StoryboardHelper.adjust()
         window!.rootViewController = storyboard.instantiateInitialViewController()! as UIViewController
         self.window?.makeKeyAndVisible()
