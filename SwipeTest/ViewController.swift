@@ -198,11 +198,12 @@ KolodaViewDataSource,KolodaViewDelegate {
         return nil
     }
     func kolodaDraggedCard(koloda: KolodaView, finishPercent: CGFloat, direction: SwipeResultDirection) {
-//        label.frame = CGRectMake(0, 0, 100, 100)
         let saveview = UIImageView()
         let dumpview = UIImageView()
         saveview.frame = CGRectMake(145, 13, 150, 100)
         dumpview.frame = CGRectMake(-8, 13, 150, 100)
+        
+        koloda.viewForCardAtIndex(koloda.currentCardNumber)?.subviews.last?.removeFromSuperview()
 
         if direction == SwipeResultDirection.Right {
             saveview.image = nil
@@ -274,7 +275,6 @@ KolodaViewDataSource,KolodaViewDelegate {
     
     @IBAction func tapYES() {
         kolodaView?.swipe(SwipeResultDirection.Right)
-        
         
     }
     
