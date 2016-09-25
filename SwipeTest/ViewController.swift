@@ -30,12 +30,16 @@ KolodaViewDataSource,KolodaViewDelegate {
     @IBOutlet var revertButton: UIButton!
     @IBOutlet var deleteButton: UIButton!
     @IBOutlet weak var photoSetBtn: UIBarButtonItem!
+    @IBOutlet weak var helpBtn: UIBarButtonItem!
     @IBOutlet var deleteImageView: UIImageView!
     
     @IBOutlet var stackedNumberLabel: UILabel!
     
     @IBOutlet var saveview: UIImageView!
     @IBOutlet var dumpview: UIImageView!
+    
+//    @IBOutlet var titleImageView: UIImageView!
+    @IBOutlet var helpImageView: UIImageView!
     
     
     //名前変える
@@ -46,7 +50,10 @@ KolodaViewDataSource,KolodaViewDelegate {
         super.viewDidLoad()
         
         self.title = "Photton"
-
+        
+        self.navigationItem.titleView = UIImageView(image:UIImage(named:"photton3.png"))
+        
+        
 //        self.navigationController?.navigationBar.barTintColor = UIColor(red: 229/255,green: 229/255,blue: 229/255, alpha:1)
 
         kolodaView.dataSource = self
@@ -57,6 +64,8 @@ KolodaViewDataSource,KolodaViewDelegate {
         
         
     }
+
+
     
     func setUpButtons() {
         
@@ -190,16 +199,24 @@ KolodaViewDataSource,KolodaViewDelegate {
     }
     func kolodaDraggedCard(koloda: KolodaView, finishPercent: CGFloat, direction: SwipeResultDirection) {
 //        label.frame = CGRectMake(0, 0, 100, 100)
+        let saveview = UIImageView()
+        let dumpview = UIImageView()
+        saveview.frame = CGRectMake(145, 13, 150, 100)
+        dumpview.frame = CGRectMake(-8, 13, 150, 100)
 
         if direction == SwipeResultDirection.Right {
-//            label.text = "aaaaaaa"
-//            label.textColor = UIColor.redColor()
-            dumpview.transform = CGAffineTransformMakeRotation(45 * CGFloat(M_PI/180))
+            saveview.image = nil
+            let img = UIImage(named:"dump")
+            dumpview.image = img
+                        dumpview.transform = CGAffineTransformMakeRotation(-45 * CGFloat(M_PI/180))
             koloda.viewForCardAtIndex(koloda.currentCardNumber)?.addSubview(dumpview)
             dumpview.alpha = finishPercent/100.0
 
         };if direction == SwipeResultDirection.Left{
-            saveview.transform = CGAffineTransformMakeRotation(-45 * CGFloat(M_PI/180))
+            dumpview.image = nil
+            let img = UIImage(named:"save")
+            saveview.image = img
+            saveview.transform = CGAffineTransformMakeRotation(45 * CGFloat(M_PI/180))
             koloda.viewForCardAtIndex(koloda.currentCardNumber)?.addSubview(saveview)
             saveview.alpha = finishPercent/100.0
             
@@ -290,6 +307,18 @@ KolodaViewDataSource,KolodaViewDelegate {
                     self.kolodaView?.reloadData()
             }
         })
+    }
+    
+    @IBAction func help(){
+        
+        if (helpImageView.image == nil) {
+            let img = UIImage(named:"help")
+            helpImageView.image = img
+        }else{
+            helpImageView.image = nil
+            
+        }
+        
     }
     
     @IBAction func backToTop(){

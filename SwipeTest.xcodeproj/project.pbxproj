@@ -63,6 +63,11 @@
 		65A605C81D96BA10003068B2 /* image2.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A605C71D96BA10003068B2 /* image2.png */; };
 		65A605CA1D96CDAC003068B2 /* dump.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A605C91D96CDAB003068B2 /* dump.png */; };
 		65A605CC1D96CDB9003068B2 /* save.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A605CB1D96CDB9003068B2 /* save.png */; };
+		65A605CE1D974DB7003068B2 /* photton.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A605CD1D974DB7003068B2 /* photton.png */; };
+		65A605D01D9761E9003068B2 /* how.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A605CF1D9761E9003068B2 /* how.png */; };
+		65A605D21D976420003068B2 /* help.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A605D11D976420003068B2 /* help.png */; };
+		65A605D41D97F35E003068B2 /* photton2.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A605D31D97F35E003068B2 /* photton2.png */; };
+		65A605D61D97F433003068B2 /* photton3.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A605D51D97F433003068B2 /* photton3.png */; };
 		65A826F91D82D948005B27CA /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A826F81D82D948005B27CA /* icon.png */; };
 		65A9D03D1C01A4C400C3BFCB /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A9D03B1C01A4C400C3BFCB /* CardView.swift */; };
 		65A9D03E1C01A4C400C3BFCB /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65A9D03C1C01A4C400C3BFCB /* OverlayView.xib */; };
@@ -147,6 +152,11 @@
 		65A605C71D96BA10003068B2 /* image2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image2.png; sourceTree = "<group>"; };
 		65A605C91D96CDAB003068B2 /* dump.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dump.png; sourceTree = "<group>"; };
 		65A605CB1D96CDB9003068B2 /* save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = save.png; sourceTree = "<group>"; };
+		65A605CD1D974DB7003068B2 /* photton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photton.png; sourceTree = "<group>"; };
+		65A605CF1D9761E9003068B2 /* how.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = how.png; sourceTree = "<group>"; };
+		65A605D11D976420003068B2 /* help.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = help.png; sourceTree = "<group>"; };
+		65A605D31D97F35E003068B2 /* photton2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photton2.png; sourceTree = "<group>"; };
+		65A605D51D97F433003068B2 /* photton3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photton3.png; sourceTree = "<group>"; };
 		65A826F81D82D948005B27CA /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		65A9D03B1C01A4C400C3BFCB /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		65A9D03C1C01A4C400C3BFCB /* OverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
@@ -270,6 +280,7 @@
 		65A602731C016269006B380D /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				65A605CF1D9761E9003068B2 /* how.png */,
 				65A605CB1D96CDB9003068B2 /* save.png */,
 				65A605C91D96CDAB003068B2 /* dump.png */,
 				65A605C71D96BA10003068B2 /* image2.png */,
@@ -288,6 +299,10 @@
 		65A605C61D96B190003068B2 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				65A605D51D97F433003068B2 /* photton3.png */,
+				65A605D31D97F35E003068B2 /* photton2.png */,
+				65A605D11D976420003068B2 /* help.png */,
+				65A605CD1D974DB7003068B2 /* photton.png */,
 				6569C8891D0ADDE900CA5010 /* garbage-2.png */,
 				6569C8871D0ADDAD00CA5010 /* folder-4.png */,
 				6569C8791D0ADBC600CA5010 /* picture.png */,
@@ -514,6 +529,8 @@
 				6598EB381D954B61009684C3 /* image.png in Resources */,
 				655C90C21D79981E007F5A1E /* Icon-App-29x29@1x.png in Resources */,
 				6569C88C1D14057E00CA5010 /* checked-2.png in Resources */,
+				65A605D21D976420003068B2 /* help.png in Resources */,
+				65A605CE1D974DB7003068B2 /* photton.png in Resources */,
 				6574FDA51BCA21550057FDAB /* オリジナルアプリ-背景2.png in Resources */,
 				6569C8821D0ADBC600CA5010 /* garbage.png in Resources */,
 				65CAB89C1B6DFEC90073C9BE /* Images.xcassets in Resources */,
@@ -522,6 +539,9 @@
 				65A605CA1D96CDAC003068B2 /* dump.png in Resources */,
 				655C90C51D79981E007F5A1E /* Icon-App-40x40@1x.png in Resources */,
 				65A605C01D96AF5D003068B2 /* trash.png in Resources */,
+				65A605D61D97F433003068B2 /* photton3.png in Resources */,
+				65A605D01D9761E9003068B2 /* how.png in Resources */,
+				65A605D41D97F35E003068B2 /* photton2.png in Resources */,
 				651D8D551D953B2D00FC80FF /* No.png in Resources */,
 				65A605CC1D96CDB9003068B2 /* save.png in Resources */,
 				65EF955B1BB7BFA00001308E /* Main.storyboard in Resources */,
